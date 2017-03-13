@@ -66,7 +66,7 @@ class Cell {
      * @throws IllegalArgumentException if an improper number of values for segments are given
      */
     Cell(int... segments) {
-        if (segments.length != 9) {
+        if (segments.length != ROW_NUMBER * COLUMN_NUMBER) {
             throw new IllegalArgumentException("Must specify status for all segments");
         }
 
