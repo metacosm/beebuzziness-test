@@ -51,6 +51,11 @@ import java.util.List;
  * @author Christophe Laprun
  */
 public class SystemOutDisplay implements Display {
+
+    private static final char OFF_SEGMENT = ' ';
+    private static final char MIDDLE_SEGMENT = '_';
+    private static final char EXTERNAL_SEGMENTS = '|';
+
     // Initialization on demand holder idiom: thread-safe singleton initialization
     private static class Holder {
         static final SystemOutDisplay INSTANCE = new SystemOutDisplay();
@@ -91,10 +96,10 @@ public class SystemOutDisplay implements Display {
             final boolean isSegmentOn = row.isOn(i);
             if (!isSegmentOn) {
                 // space if segment is off
-                stringBuilder.append(" ");
+                stringBuilder.append(OFF_SEGMENT);
             } else {
                 // middle segment is "_", external segments are "|"
-                stringBuilder.append(i == 1 ? "_" : "|");
+                stringBuilder.append(i == 1 ? MIDDLE_SEGMENT : EXTERNAL_SEGMENTS);
             }
         }
     }
