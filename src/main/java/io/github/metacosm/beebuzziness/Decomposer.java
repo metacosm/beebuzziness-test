@@ -70,8 +70,11 @@ class Decomposer {
 
         // extract power of ten components of given integer
         while(toDecompose >= 10) {
+            // getting the remainder of a division by 10 yields the integer at the current unit position
             int remainder = toDecompose % 10;
             result.add(remainder);
+            // divide by ten to consider the next unit, we leverage implicit conversion to int which rounds down to
+            // the previous int (keeping the digit under consideration intact)
             toDecompose /= 10;
         }
 

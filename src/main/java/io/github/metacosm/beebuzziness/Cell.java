@@ -82,10 +82,13 @@ class Cell {
 
             currentRow.switchSegment(column, segment);
 
-            // compute row and column
+            // compute next row and column based on the next index of the specified segments
             index++;
-            column = index % COLUMN_NUMBER;
+            // dividing the index by the total number of rows will yield (via implicit cast to int, rounding down the
+            // result of the division) the row coordinate associated with that index
             row = index / ROW_NUMBER;
+            // the column coordinate is the remainder of a division of the index by the number of columns
+            column = index % COLUMN_NUMBER;
         }
     }
 
@@ -116,6 +119,7 @@ class Cell {
 
     @Override
     public String toString() {
+        // call SystemOutDisplay to output this cell as a String
         return SystemOutDisplay.getInstance().computeStringFor(Collections.singletonList(this));
     }
 
@@ -124,6 +128,7 @@ class Cell {
      * Encapsulates the internal representation of a row for a cell.
      */
     static class Row {
+        /** Each column in the row is represented by a boolean stating whether it is on or off */
         private final BitSet segments = new BitSet(COLUMN_NUMBER);
 
         /**
@@ -137,7 +142,7 @@ class Cell {
         private void switchSegment(int segment, int segmentValue) {
             validateColumn(segment);
 
-            boolean segmentOn = segmentValue % 2 == 1;
+            boolean segmentOn = segmentValue % 2 == 1; // odd value means the segment is on
             if (segmentOn) {
                 segments.set(segment);
             }
