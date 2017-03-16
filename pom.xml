@@ -49,6 +49,7 @@
                                 <argument>0</argument>
                                 <argument>1</argument>
                                 <argument>1234567890</argument>
+                                <argument>12a34b</argument>
                             </arguments>
                         </configuration>
                     </execution>
